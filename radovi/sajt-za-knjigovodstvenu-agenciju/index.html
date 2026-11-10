@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Koncept sajta za knjigovodstvenu agenciju | Kansu Studio</title>
+
+    <!-- Učitavanje Satoshi fonta -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #141414; /* Tvoja glavna pozadina */
+            --bg-card: #1c1c1c;
+            --text-main: #f0f0f0;
+            --text-muted: #8a8a8a;
+            --border-color: #2a2a2a;
+            --font-main: 'Satoshi', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigacija nazad */
+        .back-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4vw;
+            background-color: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .back-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-nav a:hover {
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 800px; /* Suženo za lakše čitanje */
+            margin: 0 auto;
+            padding: 140px 20px 80px 20px;
+        }
+
+        /* --- BADGE --- */
+        .badge-container {
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.15;
+            color: var(--text-main);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2 span.section-num {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: monospace; /* Daje taj tehnički, precizan izgled */
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        strong {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* --- LISTS --- */
+        ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #555;
+            font-weight: bold;
+        }
+
+        /* --- CARDS ZA PRISTUP --- */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .approach-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .approach-card:hover {
+            border-color: #444;
+        }
+
+        .approach-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .approach-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* --- LIVE DEMO BUTTON --- */
+        .demo-section {
+            margin: 5rem 0;
+            text-align: center;
+            background: var(--bg-card);
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .demo-section h2 {
+            justify-content: center;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .demo-section p {
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: var(--font-main);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            border-color: var(--text-main);
+        }
+
+        /* --- CTA FOOTER --- */
+        .cta-footer {
+            margin-top: 6rem;
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .cta-footer h2 {
+            justify-content: center;
+            margin-top: 0;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-footer p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding-top: 100px; }
+            h1 { font-size: 2.2rem; }
+            .approach-grid { grid-template-columns: 1fr; }
+            .cta-footer { padding: 3rem 1.5rem; }
+            .cta-footer h2 { font-size: 1.6rem; }
+        }
+        /* Stilovi za mockup slike */
+        .hero-mockup {
+            margin: 3rem 0 5rem 0;
+        }
+
+        .hero-mockup img,
+        .mockup-grid img {
+            width: 100%;
+            height: auto;
+          /*  border-radius: 12px;*/
+           /* border: 1px solid var(--border-color);*/
+          /*  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);*/
+            display: block;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Desktop slika veća, mobilna manja */
+            gap: 1.5rem;
+            margin: 2rem 0 4rem 0;
+            align-items: center; /* Poravnava ih po sredini */
+        }
+
+        /* Na mobilnom, slike idu jedna ispod druge */
+        @media (max-width: 768px) {
+            .mockup-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGACIJA NAZAD (Zameni index.html pravim imenom tvog fajla) -->
+    <div class="back-nav">
+        <a href="../../index.html#radovi">&larr; Nazad na radove</a>
+    </div>
+
+    <div class="container">
+
+        <!-- NASLOV I BADGE -->
+        <div class="badge-container">
+            <span class="badge">Koncept</span>
+        </div>
+        <h1>Knjigovodstvena agencija — koncept sajta za moderne finansijske usluge</h1>
+
+        <div class="hero-mockup">
+            <img  loading="lazy" src="main.webp" alt="Prikaz koncepta sajta za knjigovodstvenu agenciju na desktop ekranu">
+        </div>
+
+        <!-- 1. KONTEKST -->
+        <h2><span class="section-num">01 /</span> Kontekst</h2>
+        <p>Zamisli lokalni biznis u niši pružanja računovodstvenih i finansijskih usluga. Većina agencija se oslanja isključivo na "preporuke od usta do usta" i zastarele, statične sajtove. Ovaj koncept prikazuje kako bi izgledalo moderno, digitalno rešenje za jednu takvu agenciju koja želi da privuče preduzetnike, startape i mala preduzeća koja cene transparentnost, tehnologiju i proaktivan pristup finansijama.</p>
+
+        <!-- 2. IZAZOV -->
+        <h2><span class="section-num">02 /</span> Izazov</h2>
+        <p>Tipičan biznis u ovoj niši suočava se sa nekoliko ključnih problema:</p>
+        <ul>
+            <li><strong>Zastareo imidž:</strong> Sajtovi često izgledaju previše korporativno, "suvo" i komplikovano za razumevanje običnom preduzetniku.</li>
+            <li><strong>Nedostatak transparentnosti:</strong> Klijenti ne mogu unapred da vide koliko koštaju usluge, što stvara nepoverenje.</li>
+            <li><strong>Loše korisničko iskustvo:</strong> Nedostatak jasnih poziva na akciju (CTA) i formi za kontakt čini da potencijalni klijenti lako odustanu.</li>
+            <li><strong>Fokus na zadacima, a ne na vrednosti:</strong> Sajtovi obično nabrajaju šta agencija radi, umesto da pokažu kako ona pomaže biznisu da raste, uštedi novac i izbegne kazne.</li>
+        </ul>
+
+        <!-- 3. PRISTUP -->
+        <h2><span class="section-num">03 /</span> Pristup</h2>
+        <p>Prilikom osmišljavanja ovog rešenja, fokus je bio na konverziji i izgradnji poverenja kroz nekoliko ključnih odluka:</p>
+
+        <div class="approach-grid">
+            <div class="approach-card">
+                <h3>Struktura (One-page)</h3>
+                <p>Odabrao sam one-page strukturu koja vodi korisnika kroz logičan put: od predstavljanja problema, preko usluga, do društvenih dokaza (testimonijala) i jasnog cenovnika.</p>
+            </div>
+            <div class="approach-card">
+                <h3>Tipografija i identitet</h3>
+                <p>Korišćen je čist, geometrijski sans-serif. Kombinacija tamno plave (poverenje i stabilnost) i narandžaste (energija i akcija) stvara moderan, ali profesionalan vizuelni identitet.</p>
+            </div>
+            <div class="approach-card">
+                <h3>Interaktivni CTA</h3>
+                <p>Umesto klasičnih linkova koji vode na drugu stranu, svi glavni pozivi na akciju (Zakažite, Kupite, Saznajte više) otvaraju elegantne modale sa formama ili dodatnim informacijama, zadržavajući korisnika na sajtu.</p>
+            </div>
+            <div class="approach-card">
+                <h3>Brzina i performanse</h3>
+                <p>Izbegnuti su teški grafički elementi. Korišćene su optimizovane stock fotografije, lagane CSS animacije (fade-in pri skrolovanju) i suptilan video u pozadini koji ne opterećuje učitavanje stranice.</p>
+            </div>
+        </div>
+
+        <!-- 4. ŠTA JE UKLJUČENO -->
+        <h2><span class="section-num">04 /</span> Šta je uključeno</h2>
+        <ul>
+            <li><strong>One-page dizajn:</strong> Sve bitne informacije na jednom mestu, bez zbunjujuće navigacije.</li>
+            <li><strong>Responzivnost (Mobile-first):</strong> Sajt se savršeno prilagođava mobilnim telefonima, tabletima i desktop računarima (uključujući i specifičan raspored logotipa na mobilnom).</li>
+            <li><strong>Interaktivne forme:</strong> Modalni prozori za zakazivanje konsultacija sa validacijom polja.</li>
+            <li><strong>Dinamički cenovnik:</strong> Sekcija sa cenama koja ima funkcionalan "toggle" za prikaz mesečnih i godišnjih paketa.</li>
+            <li><strong>SEO osnova:</strong> Semantički HTML i pravilno strukturirani naslovi (H1, H2) za bolje rangiranje.</li>
+            <li><strong>Društveni dokazi:</strong> Sekcija sa iskustvima klijenata i statističkim podacima o uspehu.</li>
+        </ul>
+
+        <!-- 5. LIVE DEMO -->
+        <!-- Zameni postojeću sekciju "5. LIVE DEMO" sa ovim: -->
+        <h2><span class="section-num">05 /</span> Rezultat</h2>
+        <p>Pogledaj kako dizajn funkcioniše u praksi, na različitim uređajima.</p>
+
+        <!-- Ovde ubacuješ slike -->
+        <div class="mockup-grid">
+            <img  loading="lazy" src="desktop.webp" alt="Desktop prikaz sajta">
+            <img  loading="lazy" src="phone.webp" alt="Mobilni prikaz sajta">
+        </div>
+
+        <div class="demo-section">
+            <h2>Probaj sam</h2>
+            <p>Klikni na dugme ispod za interaktivni live demo.</p>
+            <!-- ZAMENI # SA PRAVIM LINKOM DO DEMO SAJTA -->
+            <a href="https://kanso-studio.github.io/knjigovodja/" target="_blank" class="btn">
+                Otvori Live Demo &nearr;
+            </a>
+        </div>
+        <!-- 6. CTA -->
+        <div class="cta-footer">
+            <h2>Ovako nešto za tvoj biznis?</h2>
+            <p>Bez obaveze. Javljam se u roku od 24 sata da se dogovorimo.</p>
+            <!-- ZAMENI # SA LINKOM DO TVOG KONTAKTA (npr. index.html#kontakt) -->
+            <a href="../../index.html#kontakt" class="btn">
+                Započni svoj sajt &rarr;
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

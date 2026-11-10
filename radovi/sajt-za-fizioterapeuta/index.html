@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Koncept sajta za fizioterapiju | Kansu Studio</title>
+
+    <!-- Učitavanje Satoshi fonta -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #141414;
+            --bg-card: #1c1c1c;
+            --text-main: #f0f0f0;
+            --text-muted: #8a8a8a;
+            --border-color: #2a2a2a;
+            --font-main: 'Satoshi', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4vw;
+            background-color: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .back-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-nav a:hover {
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 140px 20px 80px 20px;
+        }
+
+        .badge-container {
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.15;
+            color: var(--text-main);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2 span.section-num {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        strong {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .approach-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .approach-card:hover {
+            border-color: #444;
+        }
+
+        .approach-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .approach-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            margin: 5rem 0;
+            text-align: center;
+            background: var(--bg-card);
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .demo-section h2 {
+            justify-content: center;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .demo-section p {
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: var(--font-main);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            border-color: var(--text-main);
+        }
+
+        .cta-footer {
+            margin-top: 6rem;
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .cta-footer h2 {
+            justify-content: center;
+            margin-top: 0;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-footer p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding-top: 100px; }
+            h1 { font-size: 2.2rem; }
+            .approach-grid { grid-template-columns: 1fr; }
+            .cta-footer { padding: 3rem 1.5rem; }
+            .cta-footer h2 { font-size: 1.6rem; }
+        }
+
+        .hero-mockup {
+            margin: 3rem 0 5rem 0;
+        }
+
+        .hero-mockup img,
+        .mockup-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0 4rem 0;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .mockup-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="back-nav">
+        <a href="../../index.html#radovi">&larr; Nazad na radove</a>
+    </div>
+
+    <div class="container">
+
+        <div class="badge-container">
+            <span class="badge">Koncept</span>
+        </div>
+        <h1>Fizioterapija — koncept digitalnog iskustva za ordinaciju kojoj se veruje</h1>
+
+        <div class="hero-mockup">
+            <img  loading="lazy" src="main.webp" alt="Prikaz koncepta sajta za fizioterapeutsku ordinaciju na desktop ekranu">
+        </div>
+
+        <!-- 1. KONTEKST -->
+        <h2><span class="section-num">01 /</span> Kontekst</h2>
+        <p>Fizioterapija je oblast u kojoj pacijenti dolaze sa bolom, strahom i nerealnim očekivanjima. Ovaj koncept je osmišljen za izmišljenu ordinaciju "Fizio Vita" koja želi da se predstavi kao mesto gde se pacijent oseća sigurno, informisano i zbrinuto od prvog klika. Cilj je bio stvoriti digitalni prostor koji zrači smirenošću i stručnošću, i koji pacijenta vodi od prve posete sajtu do zakazanog termina bez ikakve sumnje.</p>
+
+        <!-- 2. IZAZOV -->
+        <h2><span class="section-num">02 /</span> Izazov</h2>
+        <p>Pacijenti koji traže fizioterapeuta često se suočavaju sa istim preprekama na internetu:</p>
+        <ul>
+            <li><strong>Strah od nepoznatog:</strong> Pacijent ne zna šta ga čeka na prvom pregledu, koliko tretmana mu treba, ni da li će osećati bol.</li>
+            <li><strong>Nepoverenje u cene:</strong> Mnoge ordinacije kriju cene, što stvara osećaj da će pacijent biti "iznenađen" na kraju.</li>
+            <li><strong>Otežano zakazivanje:</strong> Pacijenti često moraju da zovu u toku radnog vremena, što je za zaposlene ljude često nemoguće.</li>
+            <li><strong>Nedostatak društvenog dokaza:</strong> Bez stvarnih iskustava drugih pacijenata, teško je izgraditi poverenje pre prvog dolaska.</li>
+        </ul>
+
+        <!-- 3. PRISTUP -->
+        <h2><span class="section-num">03 /</span> Pristup</h2>
+        <p>Rešenje je građeno oko ideje "smirenog poverenja" — svaki element treba da smanji anksioznost i poveća jasnoću:</p>
+
+        <div class="approach-grid">
+            <div class="approach-card">
+                <h3>Struktura vođena pacijentom</h3>
+                <p>One-page struktura prati put pacijenta: od predstavljanja ordinacije i filozofije, preko jasnih opisa usluga i paketa, do utisaka i zakazivanja. Nijedan korak nije preskočen.</p>
+            </div>
+            <div class="approach-card">
+                <h3>Vizuelni identitet smiraja</h3>
+                <p>Korišćene su meke, neutralne boje i čist, čitljiv font. Prostor između elemenata je velikodušan, stvarajući osećaj prostranstva i mira, suprotno od užurbanih medicinskih sajtova.</p>
+            </div>
+            <div class="approach-card">
+                <h3>Transparentnost bez kompromisa</h3>
+                <p>Jasno definisani paketi terapija sa cenama (Start, Standard, Premium) odmah su vidljivi. Pacijent tačno zna šta dobija i koliko košta, što gradi poverenje pre dolaska.</p>
+            </div>
+            <div class="approach-card">
+                <h3>Mobilnost i brzina</h3>
+                <p>Većina pacijenata pretražuje u pokretu. Sajt je optimizovan za trenutno učitavanje na telefonu, sa formom za zakazivanje koja je dostupna u svakom trenutku.</p>
+            </div>
+        </div>
+
+        <!-- 4. ŠTA JE UKLJUČENO -->
+        <h2><span class="section-num">04 /</span> Šta je uključeno</h2>
+        <ul>
+            <li><strong>One-page dizajn:</strong> Sve informacije na jednom mestu — od filozofije do paketa terapija.</li>
+            <li><strong>Responzivnost (Mobile-first):</strong> Savršen prikaz na telefonima, gde se obavlja najveći deo pretraga.</li>
+            <li><strong>Online zakazivanje:</strong> Jasna forma za zakazivanje termina, bez potrebe za telefonskim pozivom.</li>
+            <li><strong>Transparentni paketi terapija:</strong> Tri nivoa usluga sa jasno naznačenim cenama i opisom šta uključuju.</li>
+            <li><strong>Društveni dokazi:</strong> Istaknuti utisci pacijenata i statistike o uspehu (zadovoljstvo, nagrade, broj terapeuta).</li>
+            <li><strong>SEO osnova:</strong> Semantički HTML i pravilno strukturirani naslovi za bolje lokalno rangiranje.</li>
+        </ul>
+
+        <!-- 5. REZULTAT -->
+        <h2><span class="section-num">05 /</span> Rezultat</h2>
+        <p>Pogledaj kako dizajn funkcioniše u praksi, na različitim uređajima.</p>
+
+        <div class="mockup-grid">
+            <img  loading="lazy" src="desktop.webp" alt="Desktop prikaz sajta">
+            <img  loading="lazy" src="phone.webp" alt="Mobilni prikaz sajta">
+        </div>
+
+        <div class="demo-section">
+            <h2>Probaj sam</h2>
+            <p>Klikni na dugme ispod za interaktivni live demo.</p>
+            <a href="https://kanso-studio.github.io/fizioterapeut/" target="_blank" class="btn">
+                Otvori Live Demo &nearr;
+            </a>
+        </div>
+
+        <!-- 6. CTA -->
+        <div class="cta-footer">
+            <h2>Ovako nešto za tvoj biznis?</h2>
+            <p>Bez obaveze. Javljam se u roku od 24 sata da se dogovorimo.</p>
+            <a href="../../index.html#kontakt" class="btn">
+                Započni svoj sajt &rarr;
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
